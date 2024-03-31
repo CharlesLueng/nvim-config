@@ -15,6 +15,7 @@ return {
 					"javascript",
 					"html",
 					"css",
+					"scss",
 					"json",
 					-- 'graphql',
 					-- 'regex',

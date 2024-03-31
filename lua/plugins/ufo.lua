@@ -38,7 +38,7 @@ return {
 	event = "LspAttach",
 	opts = {
 		provider_selector = function()
-			return { "lsp", "indent" }
+			return { "lsp", "treesitter", "indent" }
 		end,
 		close_fold_kinds_for_ft = {
 			default = { "imports", "comment" },
@@ -62,7 +62,7 @@ return {
 		},
 		provider_selector = function(bufnr, filetype, buftype)
 			-- if you prefer treesitter provider rather than lsp,
-			-- return ftMap[filetype] or {'treesitter', 'indent'}
+			-- return ftMap[filetype] r {'treesitter', 'indent'}
 			return ftMap[filetype]
 
 			-- refer to ./doc/example.lua for detail

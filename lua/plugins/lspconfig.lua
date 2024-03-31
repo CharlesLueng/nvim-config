@@ -35,6 +35,7 @@ return {
 						"pyright",
 						"isort",
 						"black",
+						"typescript-language-server",
 						-- 'rust-analyzer',
 						-- 'graphql-language-service-cli',
 						-- 'prisma-language-server',
