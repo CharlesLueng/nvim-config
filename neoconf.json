@@ -1,0 +1,34 @@
+{
+  "neodev": {
+    "library": {
+      "enabled": true,
+      "plugins": ["nvim-lspconfig", "lsp"]
+    }
+  },
+  "neoconf": {
+    "plugins": {
+      "lua_ls": {
+        "enabled": true
+      }
+    }
+  },
+  "lspconfig": {
+    "lua_ls": {
+      "Lua.completion.callSnippet": "Replace"
+    },
+    "omnisharp": {
+      "RoslynExtensionsOptions": {
+        "enableDecompilationSupport": true
+      },
+      "fileOptions": {
+        "systemExcludeSearchPatterns": [
+          "**/node_modules/**/*",
+          "**/bin/**/*",
+          "**/obj/**/*",
+          "**/App_Data/**/*"
+        ],
+        "excludeSearchPatterns": []
+      }
+    }
+  },
+}
