@@ -1,7 +1,7 @@
 return {
 	{
 		"zbirenbaum/copilot-cmp",
-		enabled = false,
+		enabled = true,
 		event = "InsertEnter",
 		fix_pairs = true,
 		dependencies = {
@@ -53,6 +53,8 @@ return {
 						copilot_node_command = "node", -- Node.js version must be > 18.x
 						server_opts_overrides = {},
 					})
+
+					vim.cmd("Copilot disable")
 				end,
 			},
 		},

@@ -36,6 +36,7 @@ return {
 	"kevinhwang91/nvim-ufo",
 	dependencies = "kevinhwang91/promise-async",
 	event = "LspAttach",
+	enabled = false,
 	opts = {
 		provider_selector = function()
 			return { "lsp", "treesitter", "indent" }

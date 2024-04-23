@@ -3,7 +3,7 @@ return {
 	keys = {
 		{ "<leader>bc", "<cmd>BufDel<cr>", desc = "[B]uffer [D]elete" },
 		{ "<leader>bo", "<cmd>BufDelOthers<cr>", desc = "[B]uffer Delete [O]ther" },
-		{ "<leader>ba", "<cmd>BufDelAll<cr>", desc = "[B]uffer Delete [A]ll" },
+		{ "<leader>bA", "<cmd>BufDelAll<cr>", desc = "[B]uffer Delete [A]ll" },
 	},
 	config = function()
 		require("bufdel").setup({

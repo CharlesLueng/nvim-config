@@ -39,7 +39,7 @@ return {
 				},
 				on_attach = my_on_attach,
 				filters = {
-					custom = { "^.git$" },
+					custom = { "^.git$", "bin", "obj" },
 				},
 				actions = {
 					open_file = { quit_on_open = true },

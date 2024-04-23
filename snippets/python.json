@@ -1,0 +1,7 @@
+{
+  "doc/head": {
+    "prefix": "doc/head",
+    "body": ["#!/usr/bin/env python3", "# -*- coding: utf-8 -*-"],
+    "description": "Python 头部声明"
+  }
+}

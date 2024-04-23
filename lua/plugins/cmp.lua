@@ -23,6 +23,8 @@ return {
 					"rafamadriz/friendly-snippets",
 					config = function()
 						require("luasnip.loaders.from_vscode").lazy_load({})
+
+						require("luasnip.loaders.from_vscode").lazy_load({ paths = "~/.config/nvim/snippets" })
 					end,
 				},
 			},
@@ -50,6 +52,17 @@ return {
 		end
 
 		cmp.setup({
+			-- 注释禁用cmp
+			-- enabled = function()
+			-- 	-- disable completion in comments
+			-- 	local context = require("cmp.config.context")
+			-- 	-- keep command mode completion enabled when cursor is in a comment
+			-- 	if vim.api.nvim_get_mode().mode == "c" then
+			-- 		return true
+			-- 	else
+			-- 		return not context.in_treesitter_capture("comment") and not context.in_syntax_group("Comment")
+			-- 	end
+			-- end,
 			-- completion = {
 			-- 	completeopt = "menu,menuone,preview,noselect",
 			-- },
@@ -78,8 +91,16 @@ return {
 					end
 				end),
 
+				["<C-Space>"] = cmp.mapping.complete(),
 				-- Select the [p]revious item
-				["<C-p>"] = cmp.mapping.select_prev_item(),
+				["<C-p>"] = vim.schedule_wrap(function(fallback)
+					if cmp.visible() and has_words_before() then
+						cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
+					else
+						fallback()
+					end
+				end),
+				-- cmp.mapping.select_prev_item(),
 
 				-- scroll the documentation window [b]ack / [f]orward
 				["<C-b>"] = cmp.mapping.scroll_docs(-4),
@@ -89,13 +110,17 @@ return {
 				--  This will auto-import if your LSP supports it.
 				--  This will expand snippets if the LSP sent a snippet.
 				["<C-y>"] = cmp.mapping.confirm({ select = true }),
+				-- ["<tab>"] = cmp.mapping.confirm({ select = true }),
 
 				["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
 
 				-- Manually trigger a completion from nvim-cmp.
 				--  Generally you don't need this, because nvim-cmp will display
 				--  completions whenever it has completion options available.
-				["<C-e>"] = cmp.mapping.abort(),
+				["<C-e>"] = cmp.mapping({
+					i = cmp.mapping.abort(),
+					c = cmp.mapping.close(),
+				}),
 
 				-- Think of <c-l> as moving to the right of your snippet expansion.cmp
 				--  So if you have a snippet that's like:
@@ -118,30 +143,36 @@ return {
 				-- ["<C-Space>"] = cmp.mapping.complete(),
 				-- ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
 			}),
+			-- sources = {
+			-- 	{ name = "copilot", keyword_length = 0 },
+			-- 	{ name = "nvim_lsp" },
+			-- 	{ name = "luasnip" }, -- For luasnip users.
+			-- 	{ name = "path" },
+			-- },
 			sources = cmp.config.sources({
-				-- { name = "copilot", group_index = 2 },
+				{ name = "copilot", group_index = 2, keyword_length = 0 },
 				{ name = "nvim_lsp", group_index = 2 },
 				{ name = "luasnip", group_index = 2 }, -- For luasnip users.
 				{ name = "path", group_index = 2 },
 			}),
-			sorting = {
-				priority_weight = 2,
-				-- comparators = {
-				-- 	require("copilot_cmp.comparators").prioritize,
-				--
-				-- 	-- Below is the default comparitor list and order for nvim-cmp
-				-- 	cmp.config.compare.offset,
-				-- 	-- cmp.config.compare.scopes, --this is commented in nvim-cmp too
-				-- 	cmp.config.compare.exact,
-				-- 	cmp.config.compare.score,
-				-- 	cmp.config.compare.recently_used,
-				-- 	cmp.config.compare.locality,
-				-- 	cmp.config.compare.kind,
-				-- 	cmp.config.compare.sort_text,
-				-- 	cmp.config.compare.length,
-				-- 	cmp.config.compare.order,
-				-- },
-			},
+			-- sorting = {
+			-- 	priority_weight = 2,
+			-- 	-- comparators = {
+			-- 	-- 	require("copilot_cmp.comparators").prioritize,
+			-- 	--
+			-- 	-- 	-- Below is the default comparitor list and order for nvim-cmp
+			-- 	-- 	cmp.config.compare.offset,
+			-- 	-- 	-- cmp.config.compare.scopes, --this is commented in nvim-cmp too
+			-- 	-- 	cmp.config.compare.exact,
+			-- 	-- 	cmp.config.compare.score,
+			-- 	-- 	cmp.config.compare.recently_used,
+			-- 	-- 	cmp.config.compare.locality,
+			-- 	-- 	cmp.config.compare.kind,
+			-- 	-- 	cmp.config.compare.sort_text,
+			-- 	-- 	cmp.config.compare.length,
+			-- 	-- 	cmp.config.compare.order,
+			-- 	-- },
+			-- },
 		})
 
 		-- Set configuration for specific filetype.
@@ -170,6 +201,9 @@ return {
 				{ name = "cmdline" },
 			}),
 		})
+
+		local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+		cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 
 		-- snippets
 		-- require('luasnip.loaders.from_vscode').load {

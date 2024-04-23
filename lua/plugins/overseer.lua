@@ -5,6 +5,7 @@ return {
 		"akinsho/toggleterm.nvim",
 		"nvim-telescope/telescope.nvim",
 	},
+	enabled = false,
 	keys = {
 		{ "<leader>tl", "<cmd>OverseerToggle<cr>", desc = "[T]ask [L]ist" },
 		{ "<leader>tr", "<cmd>OverseerRun<cr>", desc = "[T]ask [R]un" },
