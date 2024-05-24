@@ -3,10 +3,10 @@ return {
 	opts = {
 		sections = {
 			lualine_a = { "mode" },
-			lualine_b = { "branch", { "filename", path = 3 } },
-			lualine_c = { "diagnostics" },
+			lualine_b = { "branch", { "diagnostics" } },
+			lualine_c = { { "filename", path = 0 } },
 			lualine_x = { "encoding" },
-			lualine_y = { "fileformat" },
+			lualine_y = { "progress", "fileformat" },
 			lualine_z = { "filetype" },
 		},
 	},

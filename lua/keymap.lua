@@ -17,3 +17,8 @@ map.set("n", "<leader>wc", "<C-w>c", { desc = "Close" })
 map.set("n", "<leader>w=", "<C-w>=", { desc = "Balance" })
 map.set("n", "<leader>ws", "<C-w>s", { desc = "H" })
 map.set("n", "<leader>wv", "<C-w>v", { desc = "V" })
+
+map.set("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", { desc = "Tab New" })
+map.set("n", "<leader><tab>n", "<cmd>tabnext<cr>", { desc = "Tab Next" })
+map.set("n", "<leader><tab>p", "<cmd>tabprev<cr>", { desc = "Tab Prev" })
+map.set("n", "<leader><tab>c", "<cmd>tabclose<cr>", { desc = "Tab Close" })

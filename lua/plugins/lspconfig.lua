@@ -72,6 +72,10 @@ return {
 		require("mason-lspconfig").setup_handlers({
 			function(server_name)
 				local opts = {
+					on_init = function(client)
+						client.server_capabilities.documentFormattingRangeProvider = false
+						client.server_capabilities.documentFormattingProvider = false
+					end,
 					on_attach = require("lsp").on_attach,
 					capabilities = require("lsp").capabilities,
 				}

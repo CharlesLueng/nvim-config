@@ -7,6 +7,19 @@
           "python"
         ],
         "path": "./python.json"
+      },
+      {
+        "language": [
+          "cs"
+        ],
+        "path": "./csharp.json"
+      },
+      {
+        "language": [
+          "vue",
+          "typescript"
+        ],
+        "path": "./vue.json"
       }
     ]
   }

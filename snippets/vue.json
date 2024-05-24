@@ -1,0 +1,38 @@
+{
+  "dt3/api": {
+    "prefix": "dt3/api",
+    "body": [
+      "import { defHttp } from '/@/utils/http/axios';",
+      "",
+      "enum Api {",
+      "  Prefix = '/api/${1:wr}/${2:routine}',",
+      "}",
+      "",
+      "// 获取信息",
+      "export function get(id: string) {",
+      "  return defHttp.get({ url: `${Api.Prefix}/`+id });",
+      "}",
+      "",
+      "// 更新信息",
+      "export function update(data: any) {",
+      "  return defHttp.put({ url: `${Api.Prefix}/${data.id}`, data });",
+      "}",
+      "",
+      "// 删除信息",
+      "export function del(id: string) {",
+      "  return defHttp.delete({ url: `${Api.Prefix}/`+id });",
+      "}",
+      "",
+      "// 获取分页列表",
+      "export function getPage(data: any) {",
+      "  return defHttp.get({ url: `${Api.Prefix}`, data });",
+      "}",
+      "",
+      "// 创建信息",
+      "export function create(data: any) {",
+      "  return defHttp.post({ url: `${Api.Prefix}`, data });",
+      "}"
+    ],
+    "description": "接口模板"
+  }
+}

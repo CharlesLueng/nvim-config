@@ -65,7 +65,8 @@ M.load_keymaps = function(bufnr)
 	end, { buffer = bufnr, desc = "Floating diagnostic" })
 
 	map("n", "<leader>lf", function()
-		vim.lsp.buf.format({ async = true })
+		require("conform").format({ async = true, lsp_fallback = true })
+		-- vim.lsp.buf.format({ async = true })
 	end, { buffer = bufnr, desc = "LSP formatting" })
 end
 

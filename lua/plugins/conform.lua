@@ -18,6 +18,7 @@ return {
 			html = { "prettierd" },
 			json = { "prettierd" },
 			yaml = { "prettierd" },
+			vue = { "prettierd" },
 			markdown = { "prettierd" },
 			graphql = { "prettierd" },
 			cs = { "csharpier" },

@@ -1,7 +1,7 @@
 return {
 	{
 		"zbirenbaum/copilot-cmp",
-		enabled = true,
+		enabled = false,
 		event = "InsertEnter",
 		fix_pairs = true,
 		dependencies = {

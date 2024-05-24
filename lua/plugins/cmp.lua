@@ -33,13 +33,15 @@ return {
 		"onsails/lspkind.nvim", -- vs-code like pictograms
 		"hrsh7th/cmp-nvim-lsp",
 		"hrsh7th/cmp-cmdline",
-		"zbirenbaum/copilot-cmp",
+		-- "zbirenbaum/copilot-cmp",
 	},
 	config = function()
 		local cmp = require("cmp")
 
 		local luasnip = require("luasnip")
 		luasnip.config.setup({})
+
+		require("luasnip").log.set_loglevel("info")
 
 		local lspkind = require("lspkind")
 
@@ -150,7 +152,7 @@ return {
 			-- 	{ name = "path" },
 			-- },
 			sources = cmp.config.sources({
-				{ name = "copilot", group_index = 2, keyword_length = 0 },
+				-- { name = "copilot", group_index = 2, keyword_length = 0 },
 				{ name = "nvim_lsp", group_index = 2 },
 				{ name = "luasnip", group_index = 2 }, -- For luasnip users.
 				{ name = "path", group_index = 2 },

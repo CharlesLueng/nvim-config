@@ -45,7 +45,7 @@ return {
 			default = { "imports", "comment" },
 			json = { "array" },
 			c = { "comment", "region" },
-			cs = { "comment" },
+			cs = { "comment", "region" },
 			-- default = { "comment" },
 		},
 		preview = {

@@ -1,4 +1,13 @@
-return {}
+return {
+	-- on_attach = function(client, bufnr)
+	--   require('lsp').on_attach()
+	-- end,
+	on_init = function(client)
+		-- print("123123")
+		client.server_capabilities.documentFormattingRangeProvider = false
+		client.server_capabilities.documentFormattingProvider = false
+	end,
+}
 
 -- local function get_typescript_server_path(root_dir)
 -- 	local util = require("lspconfig.util")

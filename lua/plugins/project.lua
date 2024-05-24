@@ -1,6 +1,7 @@
 return {
 	"coffebar/neovim-project",
 	lazy = false,
+	enabled = false,
 	keys = {
 		{ "<leader>fp", "<cmd>Telescope neovim-project discover<cr>", { desc = "Projects" } },
 		{ "<leader>fs", "<cmd>Telescope neovim-project history<cr>", { desc = "Project Histories" } },
