@@ -1,9 +1,10 @@
 return {
 	"nvim-telescope/telescope.nvim",
-	tag = "0.1.4",
+	tag = "0.1.8",
 	keys = {
 		{ "<leader>ff", "<cmd>lua require('telescope.builtin').find_files()<cr>", { desc = "find files" } },
 		{ "<leader>fg", "<cmd>lua require('telescope.builtin').live_grep()<cr>", { desc = "find grep" } },
+		{ "<leader>fo", "<cmd>lua require('telescope.builtin').oldfiles()<cr>", { desc = "find old files" } },
 		{
 			"<leader>fw",
 			"<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<cr>",
@@ -29,11 +30,18 @@ return {
 	dependencies = { "nvim-lua/plenary.nvim", { "nvim-telescope/telescope-fzf-native.nvim", build = "make" } },
 	config = function()
 		local actions = require("telescope.actions")
+		local action_layout = require("telescope.actions.layout")
 		require("telescope").setup({
 			defaults = {
 				mappings = {
 					i = {
 						["<esc>"] = actions.close,
+						["<A-p>"] = action_layout.toggle_preview,
+						["<C-s>"] = actions.select_horizontal,
+					},
+					n = {
+						["<A-p>"] = action_layout.toggle_preview,
+						["<C-s>"] = actions.select_horizontal,
 					},
 				},
 				file_ignore_patterns = {
@@ -55,11 +63,14 @@ return {
 				},
 				dynamic_preview_title = true,
 				path_display = { "smart" },
+				preview = {
+					filesize_limit = 0.1, -- MB
+				},
 			},
 			pickers = {
 				find_files = {
 					hidden = true,
-					previewer = true,
+					previewer = false,
 				},
 				buffers = {
 					previewer = false,

@@ -18,6 +18,7 @@ return {
 	{
 		"kkoomen/vim-doge",
 		run = ":call doge#install()",
+		enabled = false,
 		ft = { "python", "cs", "vue", "typescript", "javascript", "html", "ruby" },
 		config = function()
 			local map = vim.keymap
@@ -39,6 +40,60 @@ return {
 			-- 	destructuring_props = 1,
 			-- 	omit_redundant_param_types = 0,
 			-- }
+		end,
+	},
+	{
+		"danymat/neogen",
+		config = function()
+			require("neogen").setup({
+				input_after_comment = true,
+				languages = {
+					cs = {
+						template = {
+							annotation_convention = "xmldoc",
+						},
+					},
+					python = {
+						template = {
+							annotation_convention = "google_docstrings",
+						},
+					},
+					vue = {
+						template = {
+							annotation_convention = "jsdoc",
+						},
+					},
+					typescript = {
+						template = {
+							annotation_convention = "tsdoc",
+						},
+					},
+					typescriptreact = {
+						template = {
+							annotation_convention = "tsdoc",
+						},
+					},
+					javascript = {
+						template = {
+							annotation_convention = "jsdoc",
+						},
+					},
+					javascriptreact = {
+						template = {
+							annotation_convention = "jsdoc",
+						},
+					},
+					lua = {
+						template = {
+							annotation_convention = "emmylua",
+						},
+					},
+				},
+			})
+
+			local map = vim.keymap
+
+			map.set("n", "<Leader>lc", "<cmd>Neogen<cr>", { desc = "Generate Doc Comment" })
 		end,
 	},
 }

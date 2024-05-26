@@ -1,6 +1,6 @@
 return {
 	"MattesGroeger/vim-bookmarks",
-	keys = { "<leader>ma", "<leader>mc", "mm", "mi", "mn", "mp", "ma", "mc", "mx" },
+	keys = { "<leader>mc", "mm", "mi", "mn", "mp", "ma", "mc", "mx" },
 	event = { "BufReadPre" },
 	dependencies = {
 		"tom-anders/telescope-vim-bookmarks.nvim",

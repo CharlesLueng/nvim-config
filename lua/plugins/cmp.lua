@@ -37,6 +37,7 @@ return {
 	},
 	config = function()
 		local cmp = require("cmp")
+		local neogen = require("neogen")
 
 		local luasnip = require("luasnip")
 		luasnip.config.setup({})
@@ -132,14 +133,22 @@ return {
 				--
 				-- <c-l> will move you to the right of each of the expansion locations.
 				-- <c-h> is similar, except moving you backwards.
-				["<C-l>"] = cmp.mapping(function()
-					if luasnip.expand_or_locally_jumpable() then
+				["<C-l>"] = cmp.mapping(function(fallback)
+					if neogen.jumpable() then
+						neogen.jump_next()
+					elseif luasnip.expand_or_locally_jumpable() then
 						luasnip.expand_or_jump()
+					else
+						fallback()
 					end
 				end, { "i", "s" }),
-				["<C-h>"] = cmp.mapping(function()
-					if luasnip.locally_jumpable(-1) then
+				["<C-h>"] = cmp.mapping(function(fallback)
+					if neogen.jumpable() then
+						neogen.jump_prev()
+					elseif luasnip.locally_jumpable(-1) then
 						luasnip.jump(-1)
+					else
+						fallback()
 					end
 				end, { "i", "s" }),
 				-- ["<C-Space>"] = cmp.mapping.complete(),
